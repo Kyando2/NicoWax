@@ -12,7 +12,7 @@ class EventHandler:
     def __init__(self, event, board):
         if event.type == pygame.QUIT:
             self._quit()
-            
+
     def _quit(self):
         sys.exit()
 
@@ -41,15 +41,24 @@ class InputBox:
                 if event.key == pygame.K_RETURN:
 
                 # ----
-                    try:
-                        original, destination = ChessHandler.parse(self.text)
-                        piece = board.get_piece(original)
-                        if piece == None:
-                            raise ChessHandler.WrongMove("This piece does not exists")
-                        piece._move(destination, board)
-                        self.text = ''
-                    except ChessHandler.WrongMove as e:
-                        print(e)
+                    if self.text != "O-O" and self.text != "O-O-O":
+                        try:
+                            original, destination = ChessHandler.parse(self.text)
+                            piece = board.get_piece(original)
+                            if piece == None:
+                                raise ChessHandler.WrongMove("This piece does not exists")
+                            piece._move(destination, board)
+                            self.text = ''
+                        except ChessHandler.WrongMove as e:
+                            print(e)
+                    else:
+                        try:
+                            if self.text == "O-O":
+                                board.small_castle(board.turn)
+                            elif self.text == "O-O-O":
+                                board.large_castle(board.turn)
+                        except ChessHandler.WrongMove as e:
+                            print(e)
                 # ----
                 elif event.key == pygame.K_BACKSPACE:
                     self.text = self.text[:-1]

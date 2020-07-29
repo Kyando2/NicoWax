@@ -61,6 +61,7 @@ class Board:
             switched = True
         if self.turn == 'w' and switched == False:
             self.turn = 'b'
+        # --
 
     def _image(self, path, size):
         temp = pygame.image.load(path).convert()
@@ -71,6 +72,54 @@ class Board:
             if piece.tile == "xx": continue
             pos = ChessHandler.get_position(piece.tile)
             screen.blit(piece.sprite, pos)
+
+    def small_castle(self, colour):
+        if colour == "w":
+            if self.get_piece("H1") != None:
+                rook = self.get_piece("H1")
+                if self.get_piece("E1") != None:
+                    king = self.get_piece("E1")
+                if rook.has_moved == False and king.has_moved == False:
+                    if self.get_piece("F1") == None and self.get_piece("G1") == None:
+                        rook.tile = 'F1'
+                        king.tile = 'G1'
+                        return
+        # --
+        if colour == "b":
+            if self.get_piece("H8") != None:
+                rook = self.get_piece("H8")
+                if self.get_piece("E8") != None:
+                    king = self.get_piece("E8")
+                if rook.has_moved == False and king.has_moved == False:
+                    if self.get_piece("F8") == None and self.get_piece("G8") == None:
+                        rook.tile = 'F8'
+                        king.tile = 'G8'
+                        return
+        raise ChessHandler.WrongMove("Cannot castle")
+
+    def large_castle(self, colour):
+        if colour == "w":
+            if self.get_piece("A1") != None:
+                rook = self.get_piece("A1")
+                if self.get_piece("E1") != None:
+                    king = self.get_piece("E1")
+                if rook.has_moved == False and king.has_moved == False:
+                    if self.get_piece("B1") == None and self.get_piece("C1") == None  and self.get_piece("D1") == None:
+                        rook.tile = 'D1'
+                        king.tile = 'C1'
+                        return
+        # --
+        if colour == "b":
+            if self.get_piece("A8") != None:
+                rook = self.get_piece("A8")
+                if self.get_piece("E8") != None:
+                    king = self.get_piece("E8")
+                if rook.has_moved == False and king.has_moved == False:
+                    if self.get_piece("B8") == None and self.get_piece("C8") == None  and self.get_piece("D8") == None:
+                        rook.tile = 'D8'
+                        king.tile = 'C8'
+                        return
+        raise ChessHandler.WrongMove("Cannot castle")
 
     def get_piece(self, tile):
         for piece in self.pieces:
