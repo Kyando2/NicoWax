@@ -1,0 +1,16 @@
+BACKGROUND_IMAGE_PATH = r"bin\data\board.png"
+TICK_RATE = 20
+DEFAULT_SIZE = (50,50)
+BASE_POSITION = [40,40]
+WHITE_PAWN = r"bin\data\pieces\white\pawn.png"
+BLACK_PAWN = r"bin\data\pieces\black\pawn.png"
+WHITE_QUEEN = r"bin\data\pieces\white\queen.png"
+BLACK_QUEEN = r"bin\data\pieces\black\queen.png"
+BLACK_ROOK = r"bin\data\pieces\black\rook.png"
+WHITE_ROOK = r"bin\data\pieces\white\rook.png"
+BLACK_BISHOP = r"bin\data\pieces\black\bishop.png"
+WHITE_BISHOP = r"bin\data\pieces\white\bishop.png"
+BLACK_KNIGHT = r"bin\data\pieces\black\knight.png"
+WHITE_KNIGHT = r"bin\data\pieces\white\knight.png"
+BLACK_KING = r"bin\data\pieces\black\king.png"
+WHITE_KING= r"bin\data\pieces\white\king.png"
